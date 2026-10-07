@@ -8,12 +8,12 @@ public class StudiKasus223 {
 
         System.out.print("Input Student Name: ");
         studentName = input.nextLine();
-        System.out.print("Input Activity Type: ");
+        System.out.print("Input Activity Type (BELMAWA/BAKORMA/MANDIRI/PKM/LAINNYA): ");
         activityType = input.nextLine();
-        System.out.print("Input Number of Documents Uploaded: ");
-        docsUploaded = input.nextInt();
         
         if (activityType.equalsIgnoreCase("belmawa")||activityType.equalsIgnoreCase("bakorma")||activityType.equalsIgnoreCase("mandiri")) {
+            System.out.print("Input Number of Documents Uploaded: ");
+            docsUploaded = input.nextInt();
             System.out.print("Input Winner Rank: ");
             winnerRank = input.nextInt();
             if (winnerRank >= 1 && winnerRank <= 3) {
@@ -27,6 +27,27 @@ public class StudiKasus223 {
             } else {
                 System.out.println("Not a 1st, 2nd, or 3rd place winner, no award funds");
             }
-        } input.close();
+        } else if (activityType.equalsIgnoreCase("pkm")) {
+            System.out.print("Input Number of Documents Uploaded: ");
+            docsUploaded = input.nextInt();
+            System.out.print("Input PKM Status: ");
+            pkmStatus = input.nextInt();
+            if (pkmStatus == 1) {
+                if (docsUploaded == 4) {
+                    System.out.println("Award Funds Are Given");
+                } else {
+                    docsMissing = 4 - docsUploaded;
+                    System.out.println("Documents incomplete, award funds are not given!");
+                    System.out.println("Documents still missing: " + docsMissing);
+                }
+            } else {
+                System.out.println("PKM team is not selected for funding, no award funds!");
+            }
+        } else if (activityType.equalsIgnoreCase("lainnya")) {
+            System.out.println("Other activities do not receive award funds!");
+        } else {
+            System.out.println("Invalid activity type!");
+        }
+        input.close();
     }
 }
